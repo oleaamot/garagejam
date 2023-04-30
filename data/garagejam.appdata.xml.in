@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <id type="desktop">garagejam.desktop</id>
+  <name>GarageJam</name>
+  <summary>GarageJam is Music Studio Recording Software for GNOME</summary>
+  <metadata_license>CC0</metadata_license>
+  <description>
+    <p>GarageJam is Music Studio Recording Software developed for GNOME.</p>
+  </description>
+  <url type="homepage">https://wiki.gnome.org/Apps/Garagejam</url>
+  <screenshots>
+    <screenshot type="default">https://gitlab.gnome.org/oka/garagejam/raw/master/data/screenshot.png</screenshot>
+  </screenshots>
+  <updatecontact>gnome-devel-list@gnome.org</updatecontact>
+</application>

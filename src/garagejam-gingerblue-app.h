@@ -1,0 +1,5 @@
+#ifndef GINGERBLUE_APP_H
+#define GINGERBLUE_APP_H 1
+
+
+#endif /* GINGERBLUE_APP_H */

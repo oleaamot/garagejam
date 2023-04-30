@@ -1,0 +1,17 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+[encoding: UTF-8]
+data/garagejam.appdata.xml.in
+data/garagejam.desktop.in.in
+src/garagejam.c
+src/garagejam-gingerblue-app.c
+src/garagejam-gingerblue-config.c
+src/garagejam-gingerblue-file.c
+src/garagejam-gingerblue-knob.c
+src/garagejam-gingerblue-line.c
+src/garagejam-gingerblue-main.c
+src/garagejam-gingerblue-main-loop.c
+src/garagejam-gingerblue-record.c
+src/garagejam-gingerblue-song.c
+src/garagejam-gingerblue-studio-config.c
+src/garagejam-gingerblue-studio-location.c

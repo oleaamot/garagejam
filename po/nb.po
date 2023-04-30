@@ -1,0 +1,185 @@
+# Norwegian bokmål translation for gingerblue
+# Copyright (C) 2020 Ole Aamot Software
+# This file is distributed under the same license as the gingerblue package.
+# Ole Aamot <ole@gnome.org>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gingerblue 0.2.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-12 17:31+0200\n"
+"PO-Revision-Date: 2020-08-12 17:32+0200\n"
+"Last-Translator: Ole Aamot <ole@src.gnome.org>\n"
+"Language-Team: Norwegian bokmål <gnome-no@gnome.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/gingerblue.desktop.in.in.h:1
+msgid "Gingerblue"
+msgstr "Gingerblue"
+
+#: ../data/gingerblue.desktop.in.in.h:2
+msgid "Music Software for GNOME"
+msgstr "Musikkprogram for GNOME"
+
+#. Extra keywords that can be used to search for gingerblue in GNOME Shell and Unity
+#: ../data/gingerblue.desktop.in.in.h:4
+msgid "Live;Music;Program;"
+msgstr "Direkte;Musikk;Program;"
+
+#: ../src/gingerblue-config.c:30
+msgid "Gingerblue Music Studio"
+msgstr "Gingerblue musikkstudio"
+
+#: ../src/gingerblue-config.c:31
+msgid "Add Studio"
+msgstr "Legg til studio"
+
+#: ../src/gingerblue-config.c:32
+msgid "New Studio"
+msgstr "Nytt studio"
+
+#: ../src/gingerblue-file.c:66
+#, c-format
+msgid "Empty document\n"
+msgstr "Tomt dokument\n"
+
+#: ../src/gingerblue-file.c:71
+#, c-format
+msgid "Document of wrong type, root node != gingerblue\n"
+msgstr "Dokumentet er av feil type, rotnode != gingerblue\n"
+
+#: ../src/gingerblue-file.c:76
+#, c-format
+msgid "Valid GNOME Gingerblue %s XML document %s\n"
+msgstr "Gyldig GNOME Gingerblue %s XML-dokument %s\n"
+
+#: ../src/gingerblue-file.c:79
+#, c-format
+msgid "Parsing GNOME Gingerblue %s XML document %s\n"
+msgstr "Tolker GNOME Gingerblue %s XML-dokument %s\n"
+
+#: ../src/gingerblue-file.c:81
+#, c-format
+msgid "Found Line\n"
+msgstr "Fant linje\n"
+
+#: ../src/gingerblue-file.c:93
+#, c-format
+msgid "Found Musician\n"
+msgstr "Fant musiker\n"
+
+#. mem_volume = head
+#. volumes = g_list_append (gingerblue_volumes, (GingerblueData *)mem_volume);
+#: ../src/gingerblue-file.c:102
+#, c-format
+msgid "Done with parsing Musician\n"
+msgstr "Ferdig med tolkning av musiker\n"
+
+#: ../src/gingerblue-file.c:105
+#, c-format
+msgid "Found Musical Instrument\n"
+msgstr "Fant musikkinstrument\n"
+
+#. mem_volume = head
+#. volumes = g_list_append (gingerblue_volumes, (GingerblueData *)mem_volume);
+#: ../src/gingerblue-file.c:114
+#, c-format
+msgid "Done with parsing Musical Instrument\n"
+msgstr "Ferdig med tolkning av musikkinstrument\n"
+
+#: ../src/gingerblue-file.c:117
+#, c-format
+msgid "Found Volume\n"
+msgstr "Fant volum\n"
+
+#. mem_volume = head
+#. volumes = g_list_append (gingerblue_volumes, (GingerblueData *)mem_volume);
+#: ../src/gingerblue-file.c:126
+#, c-format
+msgid "Done with parsing Volume\n"
+msgstr "Ferdig med tolkning av volum\n"
+
+#: ../src/gingerblue-file.c:130
+#, c-format
+msgid "Finished parsing XML document\n"
+msgstr "FullfÃ¸rte tolkning av XML-dokument\n"
+
+#: ../src/gingerblue-main.c:176
+msgid "Gingerblue Setup"
+msgstr "Oppsett av Gingerblue"
+
+#: ../src/gingerblue-main.c:177
+msgid "Musician"
+msgstr "Musiker"
+
+#: ../src/gingerblue-main.c:178
+msgid "Song"
+msgstr "Sang"
+
+#: ../src/gingerblue-main.c:179
+msgid "Instrument"
+msgstr "Instrument"
+
+#: ../src/gingerblue-main.c:180
+msgid "Input Line"
+msgstr "Linje inn"
+
+#: ../src/gingerblue-main.c:181
+msgid "Label"
+msgstr "Plateselskap"
+
+#: ../src/gingerblue-main.c:182 ../src/gingerblue-main.c:233
+#: ../src/gingerblue-main.c:241
+msgid "Record"
+msgstr "Opptak"
+
+#: ../src/gingerblue-main.c:192
+msgid ""
+"Welcome to GNOME Gingerblue!\n"
+"\n"
+"Click Next to setup a music recording session!"
+msgstr ""
+"Velkommen til GNOME Gingerblue!\n"
+"\n"
+"Klikk Neste for Ã¥ starte musikkopptaket!"
+
+
+#: ../src/gingerblue-main.c:194
+msgid "Musician:"
+msgstr "Musiker:"
+
+#: ../src/gingerblue-main.c:202
+msgid "Song:"
+msgstr "Sang:"
+
+#: ../src/gingerblue-main.c:204
+msgid "Song - "
+msgstr "Sang - "
+
+#: ../src/gingerblue-main.c:210
+msgid "Instrument:"
+msgstr "Instrument:"
+
+#: ../src/gingerblue-main.c:212
+msgid "Guitar"
+msgstr "Gitar"
+
+#: ../src/gingerblue-main.c:218
+msgid "Line Input:"
+msgstr "Linje inn:"
+
+#: ../src/gingerblue-main.c:220
+msgid "Mic"
+msgstr "Mikrofon"
+
+#: ../src/gingerblue-main.c:226
+msgid "Label:"
+msgstr "Plateselskap:"
+
+#: ../src/gingerblue-main.c:228
+msgid "GNOME"
+msgstr "GNOME"

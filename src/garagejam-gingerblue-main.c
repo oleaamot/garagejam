@@ -250,7 +250,7 @@ int main(int argc, char **argv)
 		{NULL, -1, "Recording", GTK_ASSISTANT_PAGE_CONTENT, TRUE},
 		{NULL, -1, "Studio", GTK_ASSISTANT_PAGE_CONTENT, TRUE},
 		{NULL, -1, "Album", GTK_ASSISTANT_PAGE_CONTENT, TRUE},
-		{NULL, -1, "Studio", GTK_ASSISTANT_PAGE_CONFIRM, TRUE},
+		{NULL, -1, "Connect", GTK_ASSISTANT_PAGE_CONFIRM, TRUE},
 	};
 	FILE *xspf = NULL;
 	datestamp = g_date_time_new_now_utc ();
@@ -493,16 +493,16 @@ int main(int argc, char **argv)
 	fprintf(xspf, "<track>\n");
 	fprintf(xspf, "%s", g_strconcat("<title>", gtk_entry_get_text(GTK_ENTRY(song_entry)), "</title>\n", NULL));
 	fprintf(xspf, "%s", g_strconcat("<location>file://", gtk_entry_get_text(GTK_ENTRY(computer_entry)), "/", gtk_entry_get_text(GTK_ENTRY(recording_entry)), "</location>\n", NULL));
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/version'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), VERSION);
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/musician'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(musician_entry)));
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/song'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(song_entry)));
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/instrument'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(instrument_entry)));
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/line'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(line_entry)));
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/label'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(label_entry)));
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/station'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(computer_entry)));
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/filename'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(recording_entry)));
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/album'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(album_entry)));
-	fprintf(xspf, "<meta rel='http://studio.gingerblue.org/%s/studio'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(studio_entry)));
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/version'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), VERSION);
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/musician'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(musician_entry)));
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/song'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(song_entry)));
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/instrument'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(instrument_entry)));
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/line'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(line_entry)));
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/label'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(label_entry)));
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/station'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(computer_entry)));
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/filename'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(recording_entry)));
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/album'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(album_entry)));
+	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/studio'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(studio_entry)));
 	fprintf(xspf, "</track>\n");
 	fprintf(xspf, "</trackList>\n");
 	fprintf(xspf, "</playlist>\n");

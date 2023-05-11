@@ -1,3 +1,33 @@
+commit 0ddf0a0c8c72f308a33d52d851064c035d0fa69d
+Author: Ole Aamot <ole@aamot.org>
+Date:   Mon May 1 05:40:41 2023 +0200
+
+    GarageJam for GNOME (development release 0.2.0)
+
+ configure                     |  40 +++++++--------
+ configure.ac                  |   6 +--
+ data/garagejam.appdata.xml.in |   6 +--
+ data/icons/garagejam.svg      | 111 ++++++++++++++++++++++++++++++++++++++++++
+ garagejam.spec.in             |   3 ++
+ po/POTFILES.in                |   1 -
+ 6 files changed, 140 insertions(+), 27 deletions(-)
+
+commit 909662fff3392b9a392275663ed30fde748e7458
+Author: Ole Kristian Aamot <ole@aamot.org>
+Date:   Sun Apr 30 17:06:28 2023 +0200
+
+    GarageJam for GNOME (stable release 0.1.0)
+
+ ChangeLog                       |  84 ++++++-
+ NEWS                            | 522 +---------------------------------------
+ configure                       |  20 +-
+ configure.ac                    |   2 +-
+ data/icons/Makefile.am          |  17 +-
+ data/icons/Makefile.in          | 106 +++++---
+ garagejam.spec.in               |   5 +-
+ src/garagejam-gingerblue-main.c |  22 +-
+ 8 files changed, 191 insertions(+), 587 deletions(-)
+
 commit c60fd87ebcf94a481d4d55569e312411d5451df0
 Author: Ole Kristian Aamot <ole@aamot.org>
 Date:   Sun Apr 30 12:29:23 2023 +0200

@@ -7,9 +7,24 @@
   <description>
     <p>GarageJam is Music Studio Recording Software developed for GNOME.</p>
   </description>
-  <url type="homepage">https://wwww.gingerblue.org/garagejam.html</url>
-  <screenshots>
-    <screenshot type="default">https://www.gingerblue.org/garagejam.webm</screenshot>
-  </screenshots>
+  <url type="homepage">https://wwww.garagejam.org</url>
   <updatecontact>ole@aamot.org</updatecontact>
+<screenshots>
+  <screenshot>
+    <video container="webm" codec="theora" width="800" height="600">https://www.garagejam.org/garagejam.web,</video>
+  </screenshot>
+</screenshots>
+<releases>
+  <release version="0.3" timestamp="1683804812">
+    <description>
+      <p>This experimental release fixes the following bug:</p>
+      <ul>
+        <li>Recording works</li>
+      </ul>
+    </description>
+    <size type="download">122464</size>
+    <size type="installed">122464</size>
+  </release>
+</releases>
+<content_rating type="oars-1.1" />
 </application>

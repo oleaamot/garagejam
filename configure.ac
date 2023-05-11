@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([garagejam], [0.2.0], [ole@aamot.org])
+AC_INIT([garagejam], [0.3.0], [ole@aamot.org])
 AM_INIT_AUTOMAKE([-Wno-portability 1.11 no-dist-gzip dist-xz tar-ustar subdir-objects])
 AM_MAINTAINER_MODE
 AC_CONFIG_SRCDIR([src/garagejam-gingerblue-main.c])
@@ -32,9 +32,8 @@ PKG_CHECK_MODULES(GARAGEJAM,
                   gstreamer-video-1.0 \
                   gtk+-3.0 >= 3.24.23 \
                   libxml-2.0 >= 2.0 \
-                  pangoft2 >= 0.28 \
-                  shout >= 2.4.3)
-GARAGEJAM_PKG_DEPS="champlain-gtk-0.12 geoclue-2.0 libgeoclue-2.0 geocode-glib-2.0 glib-2.0 gobject-2.0 gstreamer-1.0 gstreamer-player-1.0 gstreamer-plugins-bad-1.0 gstreamer-plugins-base-1.0 gstreamer-tag-1.0 gstreamer-video-1.0 gtk+-3.0 libxml-2.0 pangoft2 shout"
+                  pangoft2 >= 0.28)
+GARAGEJAM_PKG_DEPS="champlain-gtk-0.12 geoclue-2.0 libgeoclue-2.0 geocode-glib-2.0 glib-2.0 gobject-2.0 gstreamer-1.0 gstreamer-player-1.0 gstreamer-plugins-bad-1.0 gstreamer-plugins-base-1.0 gstreamer-tag-1.0 gstreamer-video-1.0 gtk+-3.0 libxml-2.0 pangoft2"
 
 AC_SUBST(GARAGEJAM_LIBS)
 AC_SUBST(GARAGEJAM_CFLAGS)

@@ -61,6 +61,12 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 %{_sysconfdir}/icecast-server.xml
 
 %changelog
+* Mon Aug 07 2023 Ole Aamot <ole@aamot.org> - 0.8.0-0
+- Stable release with Connect, Recording and Playback
+
+* Mon Aug 07 2023 Ole Aamot <ole@aamot.org> - 0.7.0-0
+- Experimental release with Connect friendly playlist
+
 * Mon Aug 07 2023 Ole Aamot <ole@aamot.org> - 0.6.0-0
 - Connect friendly release
 

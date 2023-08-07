@@ -1,5 +1,5 @@
 project('garagejam', 'c',
-  version : '0.0.1',
+  version : '0.8.0',
   license : 'GPL')
 add_project_arguments('-DDEBUG=0', language : 'c')
 name = meson.project_name()
@@ -33,7 +33,7 @@ subdir('po')
 subdir('src')
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : 'garagejam',
-                 version : '0.0.1',
+                 version : '0.8.0',
                  name : 'libgaragejam',
                  filebase : 'garagejam',
                  description : 'GarageJam for GNOME')

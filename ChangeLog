@@ -1,3 +1,17 @@
+commit b1a8fbd7fbb1ff07c32d752b380a608f1f7ca3e6
+Author: Ole Kristian Aamot <olekaam@stud.ntnu.no>
+Date:   Mon Aug 7 09:15:02 2023 +0200
+
+    GarageJam for GNOME (version 0.6.0)
+
+ ChangeLog                                | 21 ++++++++++++
+ configure                                | 55 +++++++++++++-------------------
+ configure.ac                             |  2 +-
+ data/garagejam.desktop.in                |  2 +-
+ garagejam.spec.in                        |  3 ++
+ src/garagejam-gingerblue-studio-stream.c |  2 +-
+ 6 files changed, 49 insertions(+), 36 deletions(-)
+
 commit bafe9373bedb569e6f635482c3c42fdfff0dfe3c
 Author: Ole Kristian Aamot <olekaam@stud.ntnu.no>
 Date:   Mon Aug 7 08:37:09 2023 +0200

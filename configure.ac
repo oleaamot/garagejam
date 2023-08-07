@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([garagejam], [0.6.0], [ole@aamot.org])
+AC_INIT([garagejam], [0.8.0], [ole@aamot.org])
 AM_INIT_AUTOMAKE([-Wno-portability 1.11 no-dist-gzip dist-xz tar-ustar subdir-objects])
 AM_MAINTAINER_MODE
 AC_CONFIG_SRCDIR([src/garagejam-gingerblue-main.c])

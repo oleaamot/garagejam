@@ -15,11 +15,12 @@
   </screenshot>
 </screenshots>
 <releases>
-  <release version="0.3" timestamp="1683804812">
+  <release version="0.7" timestamp="1683804812">
     <description>
       <p>This experimental release fixes the following bug:</p>
       <ul>
         <li>Recording works</li>
+	<li>Playback works</li>
       </ul>
     </description>
     <size type="download">122464</size>

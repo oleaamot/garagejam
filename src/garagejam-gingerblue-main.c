@@ -19,6 +19,10 @@
 #include <champlain/champlain.h>
 #include <champlain-gtk/champlain-gtk.h>
 #include <string.h>
+#include <glib.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <arpa/inet.h>
 #include "garagejam.h"
 #include "garagejam-gingerblue-chord.h"
 #include "garagejam-gingerblue-config.h"
@@ -64,6 +68,8 @@ GMainLoop *main_loops;
 GstPlayer *player;
 
 GstTagList *tag_list;
+
+gchar xspfbuffer[8192];
 
 GError *error = NULL;
 
@@ -215,6 +221,7 @@ GtkAssistantPageFunc gb_assistant_cb(GtkAssistant * assistant,
 
 int main(int argc, char **argv)
 {
+        GSocketConnectable *addr;
 	GDateTime *datestamp;
 	GingerblueData *data;
 	GingerblueChord *garagejam_chord;
@@ -266,6 +273,7 @@ int main(int argc, char **argv)
 				      g_date_time_format_iso8601 (datestamp), "]",
 				      ".ogg", NULL);
 	gtk_init(&argc, &argv);
+	gst_init(&argc, &argc);	
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	introduction = gtk_assistant_new();
 	gtk_widget_set_size_request(GTK_WIDGET(introduction), 640, 480);
@@ -317,6 +325,9 @@ int main(int argc, char **argv)
 	computer_label = gtk_label_new(_("Computer:"));
 	computer_entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(computer_entry), _(g_get_host_name()));
+	addr = g_network_address_new (_(g_get_host_name()), 12348);
+	gtk_entry_set_text(GTK_ENTRY(computer_entry), 
+			   g_network_address_get_hostname(addr));
 	gtk_box_pack_start(GTK_BOX(page[6].widget), GTK_WIDGET(computer_label),
 			   FALSE, FALSE, 5);
 	gtk_box_pack_start(GTK_BOX(page[6].widget), GTK_WIDGET(computer_entry),
@@ -493,25 +504,8 @@ int main(int argc, char **argv)
 	gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
 	xspf = fopen(g_strconcat(g_get_user_special_dir(G_USER_DIRECTORY_MUSIC), "/", gtk_entry_get_text(GTK_ENTRY(label_entry)), ".xspf", NULL), "w+");
-	fprintf(xspf, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-	fprintf(xspf, "<playlist version=\"1\" xmlns=\"http://xspf.org/ns/0/\">\n");
-	fprintf(xspf, "<trackList>\n");
-	fprintf(xspf, "<track>\n");
-	fprintf(xspf, "%s", g_strconcat("<title>", gtk_entry_get_text(GTK_ENTRY(song_entry)), "</title>\n", NULL));
-	fprintf(xspf, "%s", g_strconcat("<location>file://", gtk_entry_get_text(GTK_ENTRY(computer_entry)), "/", gtk_entry_get_text(GTK_ENTRY(recording_entry)), "</location>\n", NULL));
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/version'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), VERSION);
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/musician'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(musician_entry)));
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/song'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(song_entry)));
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/instrument'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(instrument_entry)));
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/line'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(line_entry)));
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/label'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(label_entry)));
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/station'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(computer_entry)));
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/filename'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(recording_entry)));
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/album'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(album_entry)));
-	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/studio'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(studio_entry)));
-	fprintf(xspf, "</track>\n");
-	fprintf(xspf, "</trackList>\n");
-	fprintf(xspf, "</playlist>\n");
+	sprintf(xspfbuffer, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<playlist version=\"1\" xmlns=\"http://xspf.org/ns/0/\">\n<trackList>\n<track>\n<title>%s</title>\n<location>file://%s</location>\n</track>\n</trackList>\n</playlist>\n", gtk_entry_get_text(GTK_ENTRY(song_entry)), gtk_entry_get_text(GTK_ENTRY(recording_entry)));
+	fprintf(xspf, "%s", xspfbuffer);
 	fclose(xspf);
 
 	gtk_widget_set_size_request(GTK_WIDGET(window), 800, 600);

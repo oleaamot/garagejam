@@ -19,6 +19,7 @@
 #include <gobject/glib-types.h>
 #include <gobject/gparam.h>
 #include <shout/shout.h>
+#include <gst/player/player.h>
 #include "garagejam.h"
 
 #define SERVER_IP "178.255.144.178"   // Replace with your server IP
@@ -29,8 +30,10 @@ extern GtkWidget *studio_entry;
 extern GtkWidget *musician_entry;
 extern GtkWidget *song_entry;
 extern GtkWidget *label_entry;
-
+extern gchar xspfbuffer[8196];
 int main_studio_stream (gchar *location_data, gpointer *studio_city) {
+
+    GstPlayer *player;
     int sockfd;
     struct sockaddr_in server_addr;
 
@@ -57,7 +60,7 @@ int main_studio_stream (gchar *location_data, gpointer *studio_city) {
     }
 
     // Simulated audio data (replace with actual audio capture)
-    const char *audio_data = location_data;
+    const char *audio_data = g_strdup(xspfbuffer);
     size_t audio_len = strlen(audio_data);
 
     // Send audio data to server
@@ -72,5 +75,14 @@ int main_studio_stream (gchar *location_data, gpointer *studio_city) {
 
     // Close the socket
     close(sockfd);
+
+    player = gst_player_new(NULL, gst_player_g_main_context_signal_dispatcher_new(NULL));
+    gst_player_set_uri(GST_PLAYER(player), g_strconcat("file://", gtk_entry_get_text(GTK_ENTRY(recording_entry)), NULL));
+    gst_player_play(GST_PLAYER(player));
+	
+    /* g_free (garagejam_data); */
+	
+    /* g_date_time_unref (datestamp); */
+    
     return 0;
 }

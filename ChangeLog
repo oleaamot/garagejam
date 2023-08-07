@@ -1,3 +1,17 @@
+commit e645fb0bc9cda66683d30285f83cbcd4927cb2b2
+Author: Ole Kristian Aamot <ole@aamot.org>
+Date:   Thu May 11 15:54:17 2023 +0200
+
+    GarageJam for GNOME (experimental release 0.3.0)
+
+ ChangeLog                     | 30 ++++++++++++++++++++++++++
+ configure                     | 49 ++++++++++++++++++-------------------------
+ configure.ac                  |  7 +++----
+ data/garagejam.appdata.xml.in | 23 ++++++++++++++++----
+ data/garagejam.desktop.in     | 18 ++++++++++++++++
+ garagejam.spec.in             |  7 +++++--
+ 6 files changed, 95 insertions(+), 39 deletions(-)
+
 commit 0ddf0a0c8c72f308a33d52d851064c035d0fa69d
 Author: Ole Aamot <ole@aamot.org>
 Date:   Mon May 1 05:40:41 2023 +0200

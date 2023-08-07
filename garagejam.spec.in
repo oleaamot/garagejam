@@ -61,6 +61,12 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 %{_sysconfdir}/icecast-server.xml
 
 %changelog
+* Mon Aug 07 2023 Ole Aamot <ole@aamot.org> - 0.5.0-0
+- Experimental release
+
+* Mon Aug 07 2023 Ole Aamot <ole@aamot.org> - 0.4.0-0
+- Stable release
+
 * Thu May 11 2023 Ole Aamot <ole@aamot.org> - 0.3.0-0
 - Experimental release
 

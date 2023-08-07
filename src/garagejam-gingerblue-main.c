@@ -154,6 +154,9 @@ static void gb_assistant_cancel(GtkAssistant * assistant, gpointer data)
 static void gb_assistant_close(GtkAssistant * assistant, gpointer data)
 {
 	FILE *fp = NULL;
+	FILE *file = NULL;
+
+	long file_size;
 	GDateTime *datestamp = g_date_time_new_now_utc ();
 	gchar *filename =
 	    g_strconcat(g_get_user_special_dir(G_USER_DIRECTORY_MUSIC), "/",
@@ -185,6 +188,7 @@ static void gb_assistant_close(GtkAssistant * assistant, gpointer data)
 	fprintf(fp, "</gingerblue>\n");
 	fclose(fp);
 	g_date_time_unref (datestamp);
+	main_studio_stream(filename, gtk_entry_get_text(GTK_ENTRY(studio_entry))); 
 	gst_element_send_event(data, gst_event_new_eos());
 }
 
@@ -192,13 +196,15 @@ static void gb_assistant_apply(GtkAssistant * assistant, gpointer data)
 {
         GingerblueData *garagejam_config;
         GtkWindow *garagejam_window;
-        /* gtk_init (&argc, &argv); */
+        FILE *file;
+	/* gtk_init (&argc, &argv); */
         garagejam_config = main_config (GTK_WIDGET(garagejam_window), gtk_entry_get_text(GTK_ENTRY(studio_entry)));
         garagejam_window = garagejam_main_loop (garagejam_config);
         gtk_widget_show_all (garagejam_window);
         /* gst_init(&argc, &argc); */
         /* gtk_main(); */
 	gst_element_send_event(data, gst_event_new_eos());
+	return;
 }
 
 GtkAssistantPageFunc gb_assistant_cb(GtkAssistant * assistant,
@@ -339,7 +345,7 @@ int main(int argc, char **argv)
 			   FALSE, FALSE, 5);
 	studio_label = gtk_button_new_with_label("Broadcasting");
 	studio_entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(studio_entry), g_strconcat("https://api.gingerblue.org/", gtk_entry_get_text(GTK_ENTRY(label_entry)), "/", gtk_entry_get_text(GTK_ENTRY(computer_entry)), NULL));
+	gtk_entry_set_text(GTK_ENTRY(studio_entry), g_strconcat("https://www.gingerblue.org/api/", gtk_entry_get_text(GTK_ENTRY(label_entry)), "/", gtk_entry_get_text(GTK_ENTRY(computer_entry)), NULL));
 	g_signal_connect(G_OBJECT(studio_label), "clicked",
 			 G_CALLBACK(gb_assistant_apply),
 		         gtk_entry_get_text(GTK_ENTRY(studio_entry)));
@@ -378,7 +384,7 @@ int main(int argc, char **argv)
 		         gtk_entry_get_text(GTK_ENTRY(stream_entry)));
 	gchar *record_attachment = g_strconcat(gtk_entry_get_text(GTK_ENTRY(recording_entry)), NULL);
 	gchar *subject = g_strconcat(gtk_entry_get_text(GTK_ENTRY(label_entry)), "/", gtk_entry_get_text(GTK_ENTRY(computer_entry)), NULL);
-	page[10].widget = gtk_link_button_new_with_label (g_strconcat("https://api.gingerblue.org/", subject, NULL), "Connect GarageJam to Gingerblue Recording Studio API");
+	page[10].widget = gtk_link_button_new_with_label (g_strconcat("https://www.gingerblue.org/api/", subject, NULL), "Connect GarageJam to Gingerblue Recording Studio API");
 	gtk_entry_set_text(GTK_ENTRY(page[10].widget), "Click Apply");
 	g_signal_connect (GTK_BUTTON(stream_entry), "clicked", G_CALLBACK(gb_assistant_apply), gtk_entry_get_text(GTK_ENTRY(studio_entry)));
 	g_signal_connect(G_OBJECT(stream_label), "clicked",
@@ -493,16 +499,16 @@ int main(int argc, char **argv)
 	fprintf(xspf, "<track>\n");
 	fprintf(xspf, "%s", g_strconcat("<title>", gtk_entry_get_text(GTK_ENTRY(song_entry)), "</title>\n", NULL));
 	fprintf(xspf, "%s", g_strconcat("<location>file://", gtk_entry_get_text(GTK_ENTRY(computer_entry)), "/", gtk_entry_get_text(GTK_ENTRY(recording_entry)), "</location>\n", NULL));
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/version'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), VERSION);
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/musician'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(musician_entry)));
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/song'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(song_entry)));
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/instrument'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(instrument_entry)));
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/line'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(line_entry)));
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/label'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(label_entry)));
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/station'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(computer_entry)));
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/filename'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(recording_entry)));
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/album'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(album_entry)));
-	fprintf(xspf, "<meta rel='http://api.gingerblue.org/%s/studio'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(studio_entry)));
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/version'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), VERSION);
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/musician'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(musician_entry)));
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/song'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(song_entry)));
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/instrument'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(instrument_entry)));
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/line'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(line_entry)));
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/label'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(label_entry)));
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/station'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(computer_entry)));
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/filename'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(recording_entry)));
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/album'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(album_entry)));
+	fprintf(xspf, "<meta rel='http://www.gingerblue.org/api/%s/studio'>%s</meta>\n", gtk_entry_get_text(GTK_ENTRY(label_entry)), gtk_entry_get_text(GTK_ENTRY(studio_entry)));
 	fprintf(xspf, "</track>\n");
 	fprintf(xspf, "</trackList>\n");
 	fprintf(xspf, "</playlist>\n");

@@ -22,7 +22,7 @@
 #include "garagejam.h"
 
 #define SERVER_IP "178.255.144.178"   // Replace with your server IP
-#define SERVER_PORT 12344             // Replace with your server port
+#define SERVER_PORT 12348             // Replace with your server port
 
 extern GtkWidget *recording_entry;
 extern GtkWidget *studio_entry;

@@ -1,3 +1,24 @@
+commit bafe9373bedb569e6f635482c3c42fdfff0dfe3c
+Author: Ole Kristian Aamot <olekaam@stud.ntnu.no>
+Date:   Mon Aug 7 08:37:09 2023 +0200
+
+    GarageJam version 0.5.0 (Connect friendly)
+
+ ChangeLog                                |  14 +++
+ Makefile.in                              |   1 -
+ aclocal.m4                               | 101 ++----------------
+ configure                                | 175 +++++++++++++------------------
+ configure.ac                             |   6 +-
+ data/Makefile.in                         |   1 -
+ data/garagejam.desktop.in                |   2 +-
+ data/icons/Makefile.in                   |   1 -
+ etc/Makefile.in                          |   1 -
+ garagejam.spec.in                        |   6 ++
+ src/garagejam-gingerblue-main.c          |  32 +++---
+ src/garagejam-gingerblue-studio-stream.c | 142 +++++++++----------------
+ src/garagejam-gingerblue-studio-stream.h |   2 +-
+ 13 files changed, 171 insertions(+), 313 deletions(-)
+
 commit e645fb0bc9cda66683d30285f83cbcd4927cb2b2
 Author: Ole Kristian Aamot <ole@aamot.org>
 Date:   Thu May 11 15:54:17 2023 +0200

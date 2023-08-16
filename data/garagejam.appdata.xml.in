@@ -11,20 +11,21 @@
   <updatecontact>ole@aamot.org</updatecontact>
 <screenshots>
   <screenshot>
-    <video container="webm" codec="theora" width="800" height="600">https://www.garagejam.org/garagejam.web,</video>
+    <video container="webm" codec="theora" width="800" height="600">https://www.garagejam.org/garagejam.webm</video>
   </screenshot>
 </screenshots>
 <releases>
-  <release version="0.7" timestamp="1683804812">
+  <release version="1.0" timestamp="1692186566">
     <description>
-      <p>This experimental release fixes the following bug:</p>
+      <p>The Initial Release provides the following features:</p>
       <ul>
-        <li>Recording works</li>
-	<li>Playback works</li>
+        <li>Recording</li>
+	<li>Playback</li>
+	<li>Playlist</li>
       </ul>
     </description>
-    <size type="download">122464</size>
-    <size type="installed">122464</size>
+    <size type="download">122944</size>
+    <size type="installed">122944</size>
   </release>
 </releases>
 <content_rating type="oars-1.1" />

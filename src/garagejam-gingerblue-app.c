@@ -17,14 +17,16 @@
 #include "garagejam-gingerblue-main-loop.h"
 #include "garagejam-gingerblue-studio-config.h"
 
-int main_app (gint argc, gchar **argv) {
+int main_app(gint argc, gchar **argv)
+{
 	GingerblueData *garagejam_config;
-        GtkWindow *garagejam_window;
-	gtk_init (&argc, &argv);
-        garagejam_config = main_config (garagejam_window, "studios.gingerblue.org");
-	garagejam_window = garagejam_main_loop (garagejam_config);
-	gtk_widget_show_all (garagejam_window);
+	GtkWindow *garagejam_window;
+	gtk_init(&argc, &argv);
+	garagejam_config =
+	    main_config(garagejam_window, "studios.gingerblue.org");
+	garagejam_window = garagejam_main_loop(garagejam_config);
+	gtk_widget_show_all(garagejam_window);
 	gst_init(&argc, &argc);
-	gtk_main();	
+	gtk_main();
 	return (0);
 }

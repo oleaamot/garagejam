@@ -1,3 +1,24 @@
+commit 701f5c53f000ddf28d35c6b1f2f4d3b41e53a83d
+Author: Ole Kristian Aamot <olekaam@stud.ntnu.no>
+Date:   Mon Aug 7 17:05:12 2023 +0200
+
+    GarageJam for GNOME (version 0.8.0) Connect, Recording and Playback
+
+ ChangeLog                                |  14 ++++
+ Makefile.in                              |   1 +
+ aclocal.m4                               | 101 +++++++++++++++++++++++--
+ configure                                | 126 ++++++++++++++++++++-----------
+ configure.ac                             |   2 +-
+ data/Makefile.in                         |   1 +
+ data/garagejam.appdata.xml.in            |   3 +-
+ data/icons/Makefile.in                   |   1 +
+ etc/Makefile.in                          |   1 +
+ garagejam.spec.in                        |   6 ++
+ meson.build                              |   4 +-
+ src/garagejam-gingerblue-main.c          |  32 ++++----
+ src/garagejam-gingerblue-studio-stream.c |  16 +++-
+ 13 files changed, 235 insertions(+), 73 deletions(-)
+
 commit b1a8fbd7fbb1ff07c32d752b380a608f1f7ca3e6
 Author: Ole Kristian Aamot <olekaam@stud.ntnu.no>
 Date:   Mon Aug 7 09:15:02 2023 +0200

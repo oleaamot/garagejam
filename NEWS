@@ -1,6 +1,6 @@
 =============
-Version 0.1.0
+Version 1.0.0
 =============
 
-	* configure.ac: Build 0.1.0 on Fedora Core 38
-	* src/garagejam-gingerblue-main.c: Add Connect https:// link
+	* configure.ac: Build 1.0.0 on Fedora Core 38
+	* src/garagejam-gingerblue-main.c: Add Player

@@ -14,8 +14,10 @@
 #include <gtk/gtk.h>
 #include "garagejam.h"
 
-GtkWidget *knob (GingerblueData *data, GtkWidget *line, gint jack, gchar *label, gboolean lpf, gboolean hpf) {
+GtkWidget *knob(GingerblueData *data, GtkWidget *line, gint jack,
+		gchar *label, gboolean lpf, gboolean hpf)
+{
 	GtkWidget *knob;
-	knob = gtk_volume_button_new ();
+	knob = gtk_volume_button_new();
 	return (knob);
 }

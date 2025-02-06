@@ -8,5 +8,5 @@
   <station>localhost</station>
   <filename>Song.ogg</filename>
   <album>GNOME</album>
-  <studio>https://api.gingerblue.org/GNOME/localhost</studio>
+  <studio>https://www.gingerblue.org/api/gingerblue/8.0/studio</studio>
 </gingerblue>

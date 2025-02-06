@@ -1,4 +1,5 @@
 # List of source files that should *not* be translated.
 # Please keep this file sorted alphabetically.
+data/garagejam.desktop.in.in
 data/garagejam.desktop.in
 sub/data/garagejam.desktop.in

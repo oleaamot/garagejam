@@ -18,17 +18,4 @@ extern GtkWidget *studio_entry;
 
 GtkWidget *garagejam_main_loop(GingerblueData *garagejam)
 {
-	GingerblueData *Gingerblue = garagejam;
-	Gingerblue->window =
-	    main_studio_config(gtk_entry_get_text(GTK_ENTRY(studio_entry)),
-			       gtk_entry_get_text(GTK_ENTRY
-						  (computer_entry)));
-	gtk_window_set_title(Gingerblue->window,
-			     g_strconcat(gtk_entry_get_text
-					 (GTK_ENTRY(computer_entry)),
-					 " on ",
-					 gtk_entry_get_text(GTK_ENTRY
-							    (studio_entry)),
-					 NULL));
-	gtk_widget_show_all(Gingerblue->window);
 }

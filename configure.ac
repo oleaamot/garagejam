@@ -1,5 +1,5 @@
-AC_PREREQ([2.69])
-AC_INIT([garagejam], [1.0.0], [ole@aamot.org])
+AC_PREREQ([2.72])
+AC_INIT([garagejam],[4.0.0],[ole@aamot.org])
 AM_INIT_AUTOMAKE([-Wno-portability 1.11 no-dist-gzip dist-xz tar-ustar subdir-objects])
 AM_MAINTAINER_MODE
 AC_CONFIG_SRCDIR([src/garagejam-gingerblue-main.c])
@@ -21,7 +21,7 @@ PKG_CHECK_MODULES(GARAGEJAM,
                   champlain-gtk-0.12 >= 0.12.10 \
                   geoclue-2.0 >= 2.4.12 \
                   libgeoclue-2.0 >= 2.4.12 \
-                  geocode-glib-1.0 >= 3.26.1 \
+                  geocode-glib-2.0 >= 3.26.1 \
                   glib-2.0 >= 2.38.0 \
                   gobject-2.0 >= 2.38.0 \
                   gstreamer-1.0 >= 1.0 \
@@ -32,15 +32,14 @@ PKG_CHECK_MODULES(GARAGEJAM,
                   gstreamer-video-1.0 \
                   gtk+-3.0 >= 3.24.23 \
                   libxml-2.0 >= 2.0 \
-                  pangoft2 >= 0.28 \
-		  vorbisfile >= 1.3.7)
-GARAGEJAM_PKG_DEPS="champlain-gtk-0.12 geoclue-2.0 libgeoclue-2.0 geocode-glib-2.0 glib-1.0 gobject-2.0 gstreamer-1.0 gstreamer-player-1.0 gstreamer-plugins-bad-1.0 gstreamer-plugins-base-1.0 gstreamer-tag-1.0 gstreamer-video-1.0 gtk+-3.0 libxml-2.0 pangoft2 vorbisfile"
+                  pangoft2 >= 0.28)
+GARAGEJAM_PKG_DEPS="champlain-gtk-0.12 geoclue-2.0 libgeoclue-2.0 geocode-glib-2.0 glib-1.0 gobject-2.0 gstreamer-1.0 gstreamer-player-1.0 gstreamer-plugins-bad-1.0 gstreamer-plugins-base-1.0 gstreamer-tag-1.0 gstreamer-video-1.0 gtk+-3.0 libxml-2.0 pangoft2"
 
 AC_SUBST(GARAGEJAM_LIBS)
 AC_SUBST(GARAGEJAM_CFLAGS)
 AC_SUBST(GARAGEJAM_PKG_DEPS)
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 garagejam.spec
 data/Makefile
@@ -52,3 +51,4 @@ po/Makefile.in
 src/Makefile
 src/garagejam.xml
 ])
+AC_OUTPUT

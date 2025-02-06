@@ -34,7 +34,7 @@ extern GtkWidget *label_entry;
 /* Commandline options */
 static gint timeout = 30;	/* seconds */
 static GClueAccuracyLevel accuracy_level = GCLUE_ACCURACY_LEVEL_EXACT;
-static gint time_threshold;
+static gint time_threshold = 0;
 
 static GOptionEntry entries[] = {
 	{ "timeout",
@@ -184,10 +184,10 @@ gchar *studio_location_navigate(ChamplainView *view, gpointer *data)
 	gdouble altitude, speed, heading;
 	GVariant *timestamp;
 	GTimeVal tv = { 0 };
-	gclue_simple_new("garagejam",
+	/*	gclue_simple_new("garagejam",
 			 accuracy_level,
-			 time_threshold,
-			 on_simple_ready, CHAMPLAIN_VIEW(view));
+			 &time_threshold,
+			 on_simple_ready, CHAMPLAIN_VIEW(view)); */
 	gtk_entry_set_text(GTK_ENTRY(data), print_location(simple, NULL));
 	return print_location(simple, NULL);
 }

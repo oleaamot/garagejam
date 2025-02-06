@@ -1,5 +1,5 @@
-Name:           @PACKAGE@
-Version:        @VERSION@
+Name:           garagejam
+Version:        4.0.0
 Release:        1%{?dist}
 Summary:        GarageJam is Music Studio Recording Software for GNOME
 License:        GPLv3+

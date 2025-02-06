@@ -4,7 +4,6 @@
 data/garagejam.appdata.xml.in
 data/garagejam.desktop.in.in
 src/garagejam.c
-src/garagejam-gingerblue-app.c
 src/garagejam-gingerblue-config.c
 src/garagejam-gingerblue-file.c
 src/garagejam-gingerblue-knob.c

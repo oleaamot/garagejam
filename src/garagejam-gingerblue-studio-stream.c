@@ -18,7 +18,6 @@
 #include <gst/gst.h>
 #include <gobject/glib-types.h>
 #include <gobject/gparam.h>
-#include <shout/shout.h>
 #include <gst/player/player.h>
 #include "garagejam.h"
 
@@ -88,7 +87,7 @@ int main_studio_stream(gchar *location_data, gpointer *studio_city)
 				       gtk_entry_get_text(GTK_ENTRY
 							  (recording_entry)),
 				       NULL));
-	gst_player_play(GST_PLAYER(player));
+	/* gst_player_play(GST_PLAYER(player)); */
 
 	/* g_free (garagejam_data); */
 

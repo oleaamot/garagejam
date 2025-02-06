@@ -1,3 +1,47 @@
+commit e8eea668bad99236beb8667d6f71c7b4cc607651
+Author: Ole Aamot <ole.aamot@gmail.com>
+Date:   Tue Jan 23 04:12:09 2024 +0100
+
+    GarageJam for GNOME (version 2.0) - Stable Release
+
+ ChangeLog            | 30 +++++++++++++++++
+ aclocal.m4           | 36 ++++++++++----------
+ configure            | 92 ++++++++++++++++++++++++++++++++++------------------
+ configure.ac         |  4 +--
+ garagejam.spec.in    |  3 ++
+ src/garagejam.xml.in |  2 +-
+ 6 files changed, 115 insertions(+), 52 deletions(-)
+
+commit 5ad485be0e6915ab3195130cc3150878a82a9967
+Author: Ole Kristian Aamot <ole@aamot.org>
+Date:   Wed Aug 16 14:37:38 2023 +0200
+
+    GarageJam for GNOME (version 1.0) - Initial Release
+
+ ChangeLog                                  |  21 +
+ NEWS                                       |   6 +-
+ configure                                  |  49 +-
+ configure.ac                               |   7 +-
+ data/garagejam.appdata.xml.in              |  15 +-
+ garagejam.spec.in                          |   6 +
+ po/POTFILES.in                             |   1 +
+ po/POTFILES.skip                           |   1 -
+ src/garagejam-gingerblue-app.c             |  16 +-
+ src/garagejam-gingerblue-config.c          |  93 ++--
+ src/garagejam-gingerblue-file.c            | 142 +++---
+ src/garagejam-gingerblue-knob.c            |   6 +-
+ src/garagejam-gingerblue-line.c            |  17 +-
+ src/garagejam-gingerblue-main-loop.c       |  18 +-
+ src/garagejam-gingerblue-main.c            | 645 +++++++++++++++++++-------
+ src/garagejam-gingerblue-record.c          | 155 ++++---
+ src/garagejam-gingerblue-song.c            |  25 +-
+ src/garagejam-gingerblue-studio-config.c   |  38 +-
+ src/garagejam-gingerblue-studio-location.c | 262 ++++++-----
+ src/garagejam-gingerblue-studio-player.c   | 711 +++++++++++++++--------------
+ src/garagejam-gingerblue-studio-stream.c   | 122 ++---
+ src/garagejam.c                            |  47 +-
+ 22 files changed, 1452 insertions(+), 951 deletions(-)
+
 commit 701f5c53f000ddf28d35c6b1f2f4d3b41e53a83d
 Author: Ole Kristian Aamot <olekaam@stud.ntnu.no>
 Date:   Mon Aug 7 17:05:12 2023 +0200

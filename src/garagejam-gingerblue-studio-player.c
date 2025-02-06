@@ -51,7 +51,7 @@ GST_DEBUG_CATEGORY(play_debug);
 
 extern GingerblueData *Gingerblue;
 extern GtkWidget *recording_entry;
-extern GstPlay *player;
+extern GstPlayer *player;
 #if 0
 static gboolean play_next(GstPlay * play);
 static gboolean play_prev(GstPlay * play);
@@ -770,9 +770,9 @@ void garagejam_studio_player_play(GtkWidget *widget,
 	/* g_object_set_data(G_OBJECT(widget), "station_uri", g_value_get_string(&value)); */
 	if (!g_strcmp0
 	    (gtk_entry_get_text(GTK_ENTRY(recording_entry)), NULL)) {
-		garagejam_studio_player_new(player, recording_entry);
+	  garagejam_studio_player_new(player, gtk_entry_get_text(GTK_ENTRY(recording_entry)));
 	} else {
-		garagejam_studio_player_new(player, recording_entry);
+	  garagejam_studio_player_new(player, gtk_entry_get_text(GTK_ENTRY(recording_entry)));
 	}
 	gst_player_play(player);
 	return;

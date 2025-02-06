@@ -1,5 +1,5 @@
 project('garagejam', 'c',
-  version : '0.8.0',
+  version : '2.0.0',
   license : 'GPL')
 add_project_arguments('-DDEBUG=0', language : 'c')
 name = meson.project_name()
@@ -17,7 +17,7 @@ gst_tag_dep = dependency('gstreamer-tag-1.0')
 gst_video_dep = dependency('gstreamer-tag-1.0')
 champlain_gtk_dep = dependency('champlain-gtk-0.12')
 champlain_dep = dependency('champlain-0.12')
-geocode_dep = dependency('geocode-glib-1.0')
+geocode_dep = dependency('geocode-glib-2.0')
 libxml_dep = dependency('libxml-2.0')
 pangoft2_dep = dependency('pangoft2')
 shout_dep = dependency('shout')
@@ -33,7 +33,7 @@ subdir('po')
 subdir('src')
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : 'garagejam',
-                 version : '0.8.0',
+                 version : '2.0.0',
                  name : 'libgaragejam',
                  filebase : 'garagejam',
                  description : 'GarageJam for GNOME')

@@ -26,7 +26,6 @@
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <dirent.h>
-#include <vorbis/vorbisfile.h>
 #include "garagejam.h"
 #include "garagejam-gingerblue-chord.h"
 #include "garagejam-gingerblue-config.h"
@@ -106,13 +105,6 @@ void write_xspf_footer(FILE *file) {
 }
 
 void process_ogg_file(const char *filename, FILE *xspf_file) {
-    OggVorbis_File vf;
-    if (ov_fopen(filename, &vf) != 0) {
-        fprintf(stderr, "Error opening file: %s\n", filename);
-        return;
-    }
-
-    vorbis_info *info = ov_info(&vf, -1);
 
     char title[MAX_PATH_LENGTH];
     char artist[MAX_PATH_LENGTH];
@@ -121,22 +113,8 @@ void process_ogg_file(const char *filename, FILE *xspf_file) {
     strncpy(artist, gtk_entry_get_text(GTK_ENTRY(musician_entry)), sizeof(artist));
     strncpy(album, gtk_entry_get_text(GTK_ENTRY(album_entry)), sizeof(album));
 
-    vorbis_comment *vc = ov_comment(&vf, -1);
-    for (int i = 0; i < vc->comments; i++) {
-        if (strstr(vc->user_comments[i], "TITLE=") == vc->user_comments[i]) {
-            strncpy(title, vc->user_comments[i] + 6, sizeof(title));
-        }
-        if (strstr(vc->user_comments[i], "ARTIST=") == vc->user_comments[i]) {
-            strncpy(artist, vc->user_comments[i] + 7, sizeof(artist));
-        }
-        if (strstr(vc->user_comments[i], "ALBUM=") == vc->user_comments[i]) {
-            strncpy(album, vc->user_comments[i] + 6, sizeof(album));
-        }
-    }
-
     write_xspf_track(xspf_file, title, artist, album, filename);
 
-    ov_clear(&vf);
 }
 
 // Signal handler for playlist entry selection
@@ -302,7 +280,7 @@ static void gb_assistant_button_clicked(GtkButton *button,
 				GST_TAG_TITLE, g_get_real_name(),
 				GST_TAG_ARTIST, g_get_real_name(),
 				GST_TAG_ALBUM, "Voicegram",
-				GST_TAG_COMMENT, "GNOME 45",
+				GST_TAG_COMMENT, "GarageJam 4.0.0",
 				GST_TAG_DATE,
 				g_date_time_format_iso8601(datestamp),
 				NULL);
@@ -372,17 +350,6 @@ static void gb_assistant_close(GtkAssistant *assistant, gpointer data)
 
 static void gb_assistant_apply(GtkAssistant *assistant, gpointer data)
 {
-	GingerblueData *garagejam_config;
-	GtkWindow *garagejam_window;
-	FILE *file;
-	/* gtk_init (&argc, &argv); */
-	garagejam_config =
-	    main_config(GTK_WIDGET(garagejam_window),
-			gtk_entry_get_text(GTK_ENTRY(studio_entry)));
-	garagejam_window = garagejam_main_loop(garagejam_config);
-	gtk_widget_show_all(garagejam_window);
-	/* gst_init(&argc, &argc); */
-	/* gtk_main(); */
 	gst_element_send_event(data, gst_event_new_eos());
 	return;
 }
@@ -440,7 +407,7 @@ int main(int argc, char **argv)
 	GtkWidget *list;
 	GList *playlist_entries = NULL;
 	PageInfo page[11] = {
-		{ NULL, -1, "GarageJam Setup", GTK_ASSISTANT_PAGE_INTRO,
+		{ NULL, -1, "Garagejam Setup", GTK_ASSISTANT_PAGE_INTRO,
 		 TRUE },
 		{ NULL, -1, "Musician", GTK_ASSISTANT_PAGE_CONTENT, TRUE },
 		{ NULL, -1, "Song", GTK_ASSISTANT_PAGE_CONTENT, TRUE },
@@ -467,21 +434,21 @@ int main(int argc, char **argv)
 			g_date_time_format_iso8601(datestamp), "]",
 			".ogg", NULL);
 	gtk_init(&argc, &argv);
-	gst_init(&argc, &argc);
+	gst_init(&argc, &argv);
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	introduction = gtk_assistant_new();
 	gtk_widget_set_size_request(GTK_WIDGET(introduction), 640, 480);
-	gtk_window_set_title(GTK_WINDOW(introduction), "GNOME GarageJam");
+	gtk_window_set_title(GTK_WINDOW(introduction), "GNOME Garagejam");
 	// Connect signal handler for playlist entry selection
 	g_signal_connect(G_OBJECT(introduction), "destroy",
 			 G_CALLBACK(gtk_main_quit), NULL);
 	page[0].widget =
 	    gtk_label_new(_
-			  ("Welcome to GarageJam!\n\nRecord respectfully around others.\n\nClick Next to setup a music recording session!\n\nClick Cancel to stop the music recording session.\n\nClick Cancel twice to exit GarageJam."));
+			  ("Welcome to Garagejam!\n\nRecord respectfully around others.\n\nClick Next to setup a music recording session!\n\nClick Cancel to stop the music recording session.\n\nClick Cancel twice to exit Garagejam."));
 	page[1].widget = gtk_box_new(FALSE, 5);
 	musician_label = gtk_label_new(_("Musician:"));
 	musician_entry = gtk_entry_new();
-	if (g_strcmp0(musician_entry, NULL) != 0)
+	if (g_strcmp0(gtk_entry_get_text(GTK_ENTRY(musician_entry)), NULL) != 0)
 		gtk_entry_set_text(GTK_ENTRY(musician_entry),
 				   g_get_real_name());
 	else
@@ -495,10 +462,10 @@ int main(int argc, char **argv)
 	page[2].widget = gtk_box_new(FALSE, 5);
 	song_label = gtk_label_new(_("Song:"));
 	song_entry = gtk_entry_new();
-	if (g_strcmp0(song_entry, NULL) != 0)
+	if (g_strcmp0(gtk_entry_get_text(GTK_ENTRY(song_entry)), NULL) != 0)
 		gtk_entry_set_text(GTK_ENTRY(song_entry),
 				   g_strconcat(gtk_entry_get_text
-					       (song_entry),
+					       (GTK_ENTRY(song_entry)),
 					       g_date_time_format_iso8601
 					       (datestamp), NULL));
 	else
@@ -538,9 +505,6 @@ int main(int argc, char **argv)
 	computer_entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(computer_entry),
 			   _(g_get_host_name()));
-	addr = g_network_address_new(_(g_get_host_name()), 12348);
-	gtk_entry_set_text(GTK_ENTRY(computer_entry),
-			   g_network_address_get_hostname(addr));
 	gtk_box_pack_start(GTK_BOX(page[6].widget),
 			   GTK_WIDGET(computer_label), FALSE, FALSE, 5);
 	gtk_box_pack_start(GTK_BOX(page[6].widget),
@@ -642,9 +606,9 @@ int main(int argc, char **argv)
 			NULL);
 	page[10].widget =
 	    gtk_link_button_new_with_label(g_strconcat
-					   ("https://www.gingerblue.org/api/",
+					   ("https://www.gingerblue.org/api/gingerblue/8.0/studio/?computer=",
 					    subject, NULL),
-					   "Connect GarageJam to Gingerblue Recording Studio API");
+					   "Connect Gingerblue Recording Studio API");
 	gtk_entry_set_text(GTK_ENTRY(page[10].widget), "Click Apply");
 	g_signal_connect(GTK_BUTTON(stream_entry), "clicked",
 			 G_CALLBACK(gb_assistant_apply),
@@ -838,20 +802,22 @@ int main(int argc, char **argv)
 		gtk_container_add(GTK_CONTAINER(row), label);
 		gtk_list_box_insert(GTK_LIST_BOX(list), GTK_WIDGET(row),
 				    -1);
-		g_signal_connect(GTK_LIST_BOX(list), "row-selected",
-				 G_CALLBACK(on_playlist_entry_selected),
-				 NULL);
-	}
-	gtk_widget_show_all(GTK_WIDGET(window));
-	main_loops = g_main_loop_new(NULL, TRUE);
-	g_main_loop_run(main_loops);
+    }
+    
+    g_signal_connect(GTK_LIST_BOX(list), "row-activated",
+		     G_CALLBACK(on_playlist_entry_selected),
+		     NULL);
 
-	gst_element_set_state(pipeline, GST_STATE_NULL);
-	g_main_loop_unref(main_loops);
-	gst_object_unref(GST_OBJECT(pipeline));
-
-	/* player = play_new ("http://stream.radionorwegian.com/56.ogg", garagejam_data->volume); */
-	/* input_volume_value = gb_window_set_volume(GTK_VOLUME_BUTTON (input_volume), 0.00);   *\/ */
+    gtk_widget_show_all(GTK_WIDGET(window));
+    main_loops = g_main_loop_new(NULL, TRUE);
+    g_main_loop_run(main_loops);
+    
+    gst_element_set_state(pipeline, GST_STATE_NULL);
+    g_main_loop_unref(main_loops);
+    gst_object_unref(GST_OBJECT(pipeline));
+    
+    /* player = play_new ("http://stream.radionorwegian.com/56.ogg", garagejam_data->volume); */
+    /* input_volume_value = gb_window_set_volume(GTK_VOLUME_BUTTON (input_volume), 0.00);   *\/ */
 	/* g_signal_connect (GTK_BUTTON (input_record), "clicked", G_CALLBACK (gb_window_new_record), garagejam_data->volume); */
 	/* g_signal_connect (GTK_BUTTON (input_pause), "clicked", G_CALLBACK (gb_window_pause_record), garagejam_data->volume); */
 	/* g_signal_connect (GTK_BUTTON (input_break), "clicked", G_CALLBACK (gb_window_break_record), garagejam_data->volume); */
